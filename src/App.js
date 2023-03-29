@@ -26,11 +26,11 @@ function App() {
 
 
 
-  useEffect(() => {
-    fetch("http://localhost:9292/houses")
-      .then(res => res.json())
-      .then((data) => setHouses(data))
-  }, [])
+  // useEffect(() => {
+  //   fetch("http://localhost:9292/houses")
+  //     .then(res => res.json())
+  //     .then((data) => setHouses(data))
+  // }, [])
 
   // const displayedHouses = houses.filter((house) => {
   //   return house.name.toLowerCase().includes(searchTerm.toLowerCase())
