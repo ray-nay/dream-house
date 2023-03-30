@@ -21,7 +21,7 @@ export default function Form({houses, setHouses}) {
   function handleSubmit(e){
     (e).preventDefault()
     // console.log(formData)
-    fetch ('http://localhost:9292/houses', {
+    fetch ('http://localhost:3000/houses', {
         method: "POST", 
         headers: {
             "Content-Type":"application/json",

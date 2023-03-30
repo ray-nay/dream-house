@@ -1,5 +1,5 @@
 import React, {useEffect, useState, } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams} from 'react-router-dom'
 
 export default function Review (){
 
@@ -8,7 +8,7 @@ export default function Review (){
 
 
   useEffect(() => {
-    fetch(`http://localhost:9292/reviews/${id}`)
+    fetch(`http://localhost:3000/reviews/${id}`)
       .then(res => res.json())
       .then((data) => setSelectedReviews(data))
   }, [])
