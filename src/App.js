@@ -9,6 +9,8 @@ import NavBar from './Components/NavBar';
 import Search from './Components/Search';
 import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
+import Hero from './Components/Hero';
+// import HouseList from './Components/HouseList';
 function App() {
   
   const [houses, setHouses] = useState([]);
@@ -42,11 +44,14 @@ function App() {
     <BrowserRouter>
       <div className="App">
       <NavBar />
+      <Hero />
+      <HouseList />
+
       {/* <Search searchTerm={searchTerm} onSearchChange={setSearchTerm}/> */}
         <Routes>
-          <Route path="/" element={<Home houses={houses}/>} />
+          <Route path="/" element={<Hero/>} />
           <Route path="/form" element={<Form houses={houses} setHouses={setHouses} />}/>
-          <Route path="/house/:id" element={<ViewMore />} />
+          <Route path="/houses/:id" element={<ViewMore />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/signup" element={<SignUp setUser={setUser} />} />
         </Routes>
