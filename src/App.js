@@ -9,6 +9,7 @@ import NavBar from './Components/NavBar';
 import Search from './Components/Search';
 import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
+// import HouseList from './Components/HouseList';
 function App() {
   
   const [houses, setHouses] = useState([]);
@@ -26,11 +27,11 @@ function App() {
 
 
 
-  // useEffect(() => {
-  //   fetch("http://localhost:9292/houses")
-  //     .then(res => res.json())
-  //     .then((data) => setHouses(data))
-  // }, [])
+  useEffect(() => {
+    fetch("http://localhost:9292/houses")
+      .then(res => res.json())
+      .then((data) => setHouses(data))
+  }, [])
 
   // const displayedHouses = houses.filter((house) => {
   //   return house.name.toLowerCase().includes(searchTerm.toLowerCase())
