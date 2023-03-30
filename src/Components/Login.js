@@ -1,4 +1,4 @@
-
+import './Login.css';
 
 import React, { useState } from "react";
 
@@ -22,29 +22,43 @@ function Login({ setUser }) {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h1>Login</h1>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          autoComplete="off"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          autoComplete="current-password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+    <div onSubmit={handleSubmit} className="box">
+      <div className="container">
+
+        <div className="top">
+            <span>Have an account?</span>
+            <header>Login</header>
+        </div>
+
+        <div className="input-field">
+            <input type="text" 
+              className="input" 
+              placeholder="Username" 
+              id=""
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            
+            />
+            <i className='bx bx-user' ></i>
+        </div>
+
+        <div className="input-field">
+            <input type="Password" 
+              className="input" 
+              placeholder="Password" 
+              id="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <i className='bx bx-lock-alt'></i>
+        </div>
+
         <button type="submit">Login</button>
-      </form>
+    </div>
     </div>
   );
 }
+
 
 export default Login;

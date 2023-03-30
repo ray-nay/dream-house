@@ -1,6 +1,6 @@
 import React, {useEffect, useState, } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import HouseCard from './HouseCard'
+// import HouseCard from './HouseCard'
 import Review from './Review'
 
 export default function ViewMore() {
@@ -20,7 +20,7 @@ console.log({id})
   console.log(selectedHouses)
   return (
     <div className='Details'>
-       <img src ={selectedHouses.img}/>
+       <img src ={selectedHouses.img} alt='/'/>
        <h1>{selectedHouses.title}</h1> 
         <p>{selectedHouses.desc}</p>
         <b><p>PRICE:{selectedHouses.price}</p></b>
