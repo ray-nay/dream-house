@@ -8,7 +8,7 @@ import ViewMore from './Components/ViewMore';
 import NavBar from './Components/NavBar';
 // import Search from './Components/Search';
 import Login from "./Components/Login";
-// import SignUp from "./Components/SignUp";
+import SignInPage from "./Components/SignInPage";
 // import HouseList from './Components/HouseList';
 function App() {
   
@@ -18,7 +18,7 @@ function App() {
   // const [searchTerm, setSearchTerm] = useState("");
   useEffect(() => {
     // auto-login
-    fetch("/me").then((r) => {
+    fetch("/login").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }
@@ -36,7 +36,26 @@ function App() {
   // const displayedHouses = houses.filter((house) => {
   //   return house.name.toLowerCase().includes(searchTerm.toLowerCase())
   // });
-  // if (!user) return <Login onLogin={setUser} />;
+  
+
+  // // If user is not logged in, show the login page
+  // if (!user) {
+  //   return <Login onLogin={setUser} />;
+  // }
+
+  // // If user is logged in, show the home page
+  useEffect(() => {
+    fetch("http://localhost:3000/loggedin").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
+  if (!user) {
+    return <SignInPage onLogin={setUser} />;
+  }
+  
+
   return (
 
     
@@ -49,13 +68,16 @@ function App() {
           <Route path="/form" element={<Form houses={houses} setHouses={setHouses} />}/>
           <Route path="/house/:id" element={<ViewMore />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
-          {/* <Route path="/signup" element={<SignUp setUser={setUser} />} /> */}
+          <Route path="/signup" element={<SignInPage setUser={setUser} />} />
         </Routes>
         
       </div>
     </BrowserRouter>
 
-
+// If user is not logged in, show the login page
+  // if (!user) {
+  //   return <Login onLogin={setUser} />;
+  // }
   );
 }
 

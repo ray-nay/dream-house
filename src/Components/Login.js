@@ -1,50 +1,70 @@
+import React, { useState } from 'react';
 
-
-import React, { useState } from "react";
-
-function Login({ setUser }) {
+function Login({onLogin}) {
+  
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setErrors] = useState([]);
+
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch("/login", {
+    fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Accept: "application/json",
       },
-      body: JSON.stringify({ username, password }),
-    }).then((r) => {
-      if (r.ok) {
-        r.json().then((user) => setUser(user));
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+    })
+      .then((res) => {
+      console.log(res)
+      if (res.ok) {
+        res.json().then((user) => {
+          onLogin(user);
+        });
+      } else {
+        res.json().then((err) => {
+          setErrors(err.errors);
+        });
       }
     });
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h1>Login</h1>
-        <label htmlFor="username">Username</label>
+    <div className="login">
+      <form className="forms" onSubmit={handleSubmit}>
+        <h2 id="user">User Login</h2>
+        <label>Username</label>
         <input
           type="text"
-          id="username"
-          autoComplete="off"
-          value={username}
+          className="inputs"
+          placeholder="username"
           onChange={(e) => setUsername(e.target.value)}
         />
-        <label htmlFor="password">Password</label>
+        <label>Password</label>
         <input
           type="password"
-          id="password"
-          autoComplete="current-password"
-          value={password}
+          className="inputs"
+          placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
+        <br />
+        <br />
+        <button className="btn-sec" type="submit">
+          Login
+        </button>
       </form>
+      <div>
+        {error.map((er) => (
+          <h2 key={er}>{er}!</h2>
+        ))}
+      </div>
     </div>
   );
 }
 
-export default Login;
+export default Login
