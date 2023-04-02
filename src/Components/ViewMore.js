@@ -20,7 +20,7 @@ console.log({id})
   console.log(selectedHouses)
   return (
     <div className='Details'>
-       <img src ={selectedHouses.img} alt='/'/>
+       <img src ={selectedHouses.image} alt='/'/>
        <h1>{selectedHouses.title}</h1> 
         <p>{selectedHouses.desc}</p>
         <b><p>PRICE:{selectedHouses.price}</p></b>

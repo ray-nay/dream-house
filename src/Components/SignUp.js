@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from '../context/AuthContext'
 
 function SignUp({ setUser }) {
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
-  const {signup} = useContext(AuthContext)
+   const {signup} = useContext(AuthContext)
 
   function handleSubmit(e) {
     e.preventDefault();
-    signup()
+     signup()
   
   }
 
@@ -23,8 +23,8 @@ function SignUp({ setUser }) {
           type="text"
           id="username"
           autoComplete="off"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
         <label htmlFor="password">Password</label>
         <input

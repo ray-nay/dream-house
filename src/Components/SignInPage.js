@@ -1,40 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { AuthContext } from '../context/AuthContext'
+function SignInPage() {
 
-function SignInPage({onLogin}) {
-
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordconfirmation, setPasswordConfirmation] = useState("");
-  const [error, setErrors] = useState([]);
+ 
+
+  const {signup} = useContext(AuthContext)
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch("http://localhost:3000/users", {
-      method: "POST",
-      headers: {
-        // mode: "no-cors",
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        username,
-        email,
-        password,
-        password_confirmation: passwordconfirmation,
-      }),
-    }).then((res) => {
-      if (res.ok) {
-        res.json().then((user) => onLogin(user));
-      } else {
-        res.json().then((err) => {
-          console.log(err.errors);
-          setErrors(err.errors);
-        });
-      }
-    });
+    signup(name, password, passwordconfirmation)
   }
-  
 
   return (
     <div>
@@ -46,8 +25,8 @@ function SignInPage({onLogin}) {
           className="inputs"
           placeholder="Username"
           name="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
         <label>Email</label>
         <input
@@ -81,11 +60,7 @@ function SignInPage({onLogin}) {
           Sign Up
         </button>
       </form>
-      <div>
-        {error.map((er) => (
-          <h2 key={er}>{er}!</h2>
-        ))}
-      </div>
+      
     </div>
   );
 }

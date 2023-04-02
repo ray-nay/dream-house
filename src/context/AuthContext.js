@@ -1,5 +1,5 @@
 import React from 'react';
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2"
 
@@ -12,14 +12,14 @@ export default function AuthProvider({children})
 
     const [change, setOnChange] = useState(false)
     // login
-    const login = (username, password) =>{
-        fetch("/login",{
+    const login = (name, password) =>{
+        fetch("http://127.0.0.1:3000/login",{
             method: "POST",
             headers:{
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                username, password
+                name, password
             })
         }
         )
@@ -45,7 +45,7 @@ export default function AuthProvider({children})
                     showConfirmButton: false,
                     timer: 3000
                   })
-                  navigate("/Home")
+                  navigate("/")
 
             }
             else{
@@ -61,22 +61,44 @@ export default function AuthProvider({children})
     }
 
      // signup
-    const signup = (username, password, passwordConfirmation) =>{
-        fetch("/signup", {
+    const signup = (name, password, passwordconfirmation) =>{
+        fetch("http://localhost:3000/users", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              username,
+              name,
               password,
-              password_confirmation: passwordConfirmation,
+              password_confirmation: passwordconfirmation,
             }),
-          }).then((r) => {
-            if (r.ok) {
-              r.json().then((user) => setUser(user));
-            }
-          });
+          }).then(res=>res.json())
+            .then(response=>{
+              setOnChange(!change)
+              if(response.errors)
+              {
+                   
+                      Swal.fire({
+                          icon: 'error',
+                          title: 'Oops...',
+                          text: response.errors,
+                          footer: '<a href="">Why do I have this issue?</a>'
+                      })
+              }
+              else {
+                  Swal.fire({
+                      position: 'center',
+                      icon: 'success',
+                      title: 'signedIn successfully!',
+                      showConfirmButton: false,
+                      timer: 3000
+                    })
+                    navigate("/Login")
+  
+              }
+              
+              
+          })
     }
 
      // Logout

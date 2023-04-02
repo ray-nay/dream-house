@@ -6,7 +6,7 @@ export default function HouseCard({title, image, id, location}) {
   return (
     <div className="col">
     <div className="card">
-      <img src={img} className="card-img-top" alt="House" />
+      <img src={image} className="card-img-top" alt="House" />
       <div className="card-body">
         <h5 className="card-title">{title}</h5>
         <p className="card-text">

@@ -2,16 +2,16 @@ import React, {useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext'
 function Login({onLogin}) {
   
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setErrors] = useState([]);
+  
 
   const {login } = useContext(AuthContext)
     
     const handleSubmit = (e)=>{
         // send Data to rails
         e.preventDefault()
-        login(username, password)
+        login(name, password)
     }
 
   return (
@@ -23,7 +23,7 @@ function Login({onLogin}) {
           type="text"
           className="inputs"
           placeholder="username"
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => setName(e.target.value)}
         />
         <label>Password</label>
         <input
@@ -38,11 +38,7 @@ function Login({onLogin}) {
           Login
         </button>
       </form>
-      <div>
-        {error.map((er) => (
-          <h2 key={er}>{er}!</h2>
-        ))}
-      </div>
+      
     </div>
   );
 }
