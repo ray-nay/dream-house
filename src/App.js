@@ -7,6 +7,7 @@ import Form from './Components/Form';
 import ViewMore from './Components/ViewMore';
 import NavBar from './Components/NavBar';
 // import Search from './Components/Search';
+// import Search from './Components/Search';
 import Login from "./Components/Login";
 import SignInPage from "./Components/SignInPage";
 import AuthProvider from './context/AuthContext';
