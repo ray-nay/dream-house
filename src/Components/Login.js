@@ -1,38 +1,18 @@
-import React, { useState } from 'react';
-
+import React, {useContext, useState } from 'react';
+import { AuthContext } from '../context/AuthContext'
 function Login({onLogin}) {
   
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setErrors] = useState([]);
 
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    fetch("http://localhost:3000/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    })
-      .then((res) => {
-      console.log(res)
-      if (res.ok) {
-        res.json().then((user) => {
-          onLogin(user);
-        });
-      } else {
-        res.json().then((err) => {
-          setErrors(err.errors);
-        });
-      }
-    });
-  }
+  const {login } = useContext(AuthContext)
+    
+    const handleSubmit = (e)=>{
+        // send Data to rails
+        e.preventDefault()
+        login(username, password)
+    }
 
   return (
     <div className="login">

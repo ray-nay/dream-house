@@ -9,6 +9,8 @@ import NavBar from './Components/NavBar';
 // import Search from './Components/Search';
 import Login from "./Components/Login";
 import SignInPage from "./Components/SignInPage";
+import AuthProvider from './context/AuthContext';
+
 // import HouseList from './Components/HouseList';
 function App() {
   
@@ -60,18 +62,22 @@ function App() {
 
     
     <BrowserRouter>
-      <div className="App">
-      <NavBar />
-      {/* <Search searchTerm={searchTerm} onSearchChange={setSearchTerm}/> */}
-        <Routes>
-          <Route path="/" element={<Home houses={houses}/>} />
-          <Route path="/form" element={<Form houses={houses} setHouses={setHouses} />}/>
-          <Route path="/house/:id" element={<ViewMore />} />
-          <Route path="/login" element={<Login setUser={setUser} />} />
-          <Route path="/signup" element={<SignInPage setUser={setUser} />} />
-        </Routes>
+        <AuthProvider>
         
-      </div>
+              <div className="App">
+
+              <NavBar />
+              {/* <Search searchTerm={searchTerm} onSearchChange={setSearchTerm}/> */}
+                <Routes>
+                  <Route path="/" element={<Home houses={houses}/>} />
+                  <Route path="/form" element={<Form houses={houses} setHouses={setHouses} />}/>
+                  <Route path="/house/:id" element={<ViewMore />} />
+                  <Route path="/login" element={<Login setUser={setUser} />} />
+                  <Route path="/signup" element={<SignInPage setUser={setUser} />} />
+                </Routes>
+                
+              </div>
+        </AuthProvider>
     </BrowserRouter>
 
 // If user is not logged in, show the login page
