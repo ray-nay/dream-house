@@ -1,10 +1,10 @@
 # Name of the Project
 Dream House App
-### Author : Name Date
-Catherine Renee Mumbi
-Joanne Muthoni
-Khalif Nhashon
-Teresa Maina
+### Authors
+1.Catherine Renee Mumbi
+2.Joanne Muthoni
+3.Khalif Nhashon
+4.Teresa Maina
 ## Project Description
 This project is a single page application that displays to the user a list of all the available houses that are up for rent on the website.
 
