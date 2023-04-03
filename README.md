@@ -69,7 +69,7 @@ Once the user, is done and wishes to logout, they can click on the logout button
 
 This is the signup page.
 
-![Landing page](./images/signup.png)
+![Signup page](./images/signup.png)
 ### Landing page
 
 This is the landing page.
